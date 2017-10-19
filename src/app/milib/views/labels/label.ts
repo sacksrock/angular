@@ -112,5 +112,9 @@ export class Label extends View{
     public setTexto(vtexto:string){
         this.sTexto=vtexto;
     }
+    //metodo que devuelve el texto
+    public getTexto():string{
+        return this.sTexto;
+    }
 
 }

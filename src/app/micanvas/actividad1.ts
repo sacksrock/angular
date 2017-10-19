@@ -43,8 +43,10 @@ export class Actividad1 implements EventsAdminListener,ButtonListener{
         this.crearEscenarioMenu();
         //creamos el array de las preguntas
         this.arrPreg=["¿Cuantas Champions tiene el Real Madrid?","¿Cuantas Ligas Tiene el Real Madrid?","¿Cuantas Copas del Rey Tiene el Real Madrid?"];
-        //creamos las respuestas a la pregunta uno
+        //creamos las respuestas a las respuestas
         this.arrResp=[["Ninguna","Doce","Diez","Siete"],["Ninguna","Doce","Diez","Treinta y Tres"],["Ninguna","Doce","Diez","Diecinueve"]];
+        //creamos las respuestas a las respuestas correctas
+        this.arrRespOk=["Doce","Treinta y Tres","Diecinueve"];
     }
 
     /**
@@ -131,6 +133,7 @@ export class Actividad1 implements EventsAdminListener,ButtonListener{
             this.lblPregunta.setTexto("Salimos");
             this.motor.setViewVisibility(this.Window2.uid,false);
         }
+        btn.getlbl().getTexto();
     }
 
 
