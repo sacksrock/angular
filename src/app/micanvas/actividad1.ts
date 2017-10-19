@@ -30,7 +30,9 @@ export class Actividad1 implements EventsAdminListener,ButtonListener{
     private buttonResp3:Button;
     private buttonResp4:Button;
     private buttonx:Button;
-    
+    private arrPreg:any[];
+    private arrResp:any[];
+    private arrRespOk:any[];
 
 
     constructor(vMotor:Motor){
@@ -39,7 +41,10 @@ export class Actividad1 implements EventsAdminListener,ButtonListener{
         this.imagenFondo.setImg('./assets/backmain.jpg');
         this.motor.setRaiz(this.imagenFondo);
         this.crearEscenarioMenu();
-        
+        //creamos el array de las preguntas
+        this.arrPreg=["¿Cuantas Champions tiene el Real Madrid?","¿Cuantas Ligas Tiene el Real Madrid?","¿Cuantas Copas del Rey Tiene el Real Madrid?"];
+        //creamos las respuestas a la pregunta uno
+        this.arrResp=[["Ninguna","Doce","Diez","Siete"],["Ninguna","Doce","Diez","Treinta y Tres"],["Ninguna","Doce","Diez","Diecinueve"]];
     }
 
     /**
@@ -91,23 +96,23 @@ export class Actividad1 implements EventsAdminListener,ButtonListener{
             this.motor.addViewToParentView(this.imagenFondo, this.Window2);
             //Creamos la pregunta 1
             this.lblPregunta = new Label(this.motor,340,40,200,100);
-            this.lblPregunta.setTexto("label");
+            this.lblPregunta.setTexto(this.arrPreg[0]);
             this.motor.addViewToParentView(this.Window2,this.lblPregunta);
             //Creamos la respuesta 1
             this.buttonResp1 = new Button (this.motor,120,200,200,100);
-            this.buttonResp1.setTexto("respuesta1");
+            this.buttonResp1.setTexto(this.arrResp[0][0]);
             this.motor.addViewToParentView(this.Window2,this.buttonResp1);
             //Creamos la respuesta 2
             this.buttonResp2 = new Button (this.motor,120,300,200,100);
-            this.buttonResp2.setTexto("respuesta2");
+            this.buttonResp2.setTexto(this.arrResp[0][1]);
             this.motor.addViewToParentView(this.Window2,this.buttonResp2);
             //Creamos la respuesta 3
             this.buttonResp3 = new Button (this.motor,520,200,200,100);
-            this.buttonResp3.setTexto("respuesta3");
+            this.buttonResp3.setTexto(this.arrResp[0][2]);
             this.motor.addViewToParentView(this.Window2,this.buttonResp3);
             //Creamos la respuesta 4
             this.buttonResp4 = new Button (this.motor,520,300,200,100);
-            this.buttonResp4.setTexto("respuesta4");
+            this.buttonResp4.setTexto(this.arrResp[0][3]);
             this.motor.addViewToParentView(this.Window2,this.buttonResp4);
             //Creamos el boton salir
             this.buttonx = new Button (this.motor,700,-30,200,100);
