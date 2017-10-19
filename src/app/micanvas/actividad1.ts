@@ -29,6 +29,7 @@ export class Actividad1 implements EventsAdminListener,ButtonListener{
     private buttonResp2:Button;
     private buttonResp3:Button;
     private buttonResp4:Button;
+    private buttonx:Button;
     
 
 
@@ -94,18 +95,25 @@ export class Actividad1 implements EventsAdminListener,ButtonListener{
             this.motor.addViewToParentView(this.Window2,this.lblPregunta);
             //Creamos la respuesta 1
             this.buttonResp1 = new Button (this.motor,120,200,200,100);
+            this.buttonResp1.setTexto("respuesta1");
             this.motor.addViewToParentView(this.Window2,this.buttonResp1);
             //Creamos la respuesta 2
             this.buttonResp2 = new Button (this.motor,120,300,200,100);
+            this.buttonResp2.setTexto("respuesta2");
             this.motor.addViewToParentView(this.Window2,this.buttonResp2);
             //Creamos la respuesta 3
             this.buttonResp3 = new Button (this.motor,520,200,200,100);
+            this.buttonResp3.setTexto("respuesta3");
             this.motor.addViewToParentView(this.Window2,this.buttonResp3);
             //Creamos la respuesta 4
             this.buttonResp4 = new Button (this.motor,520,300,200,100);
+            this.buttonResp4.setTexto("respuesta4");
             this.motor.addViewToParentView(this.Window2,this.buttonResp4);
-            
-
+            //Creamos el boton salir
+            this.buttonx = new Button (this.motor,700,-30,200,100);
+            this.buttonx.setTexto("X");
+            this.motor.addViewToParentView(this.Window2,this.buttonx);
+            this.buttonx.setListener(this);
 
         }
         if(btn==this.buttonContin){
@@ -114,7 +122,10 @@ export class Actividad1 implements EventsAdminListener,ButtonListener{
         if(btn==this.buttonExit){
             this.buttonExit.setTexto("edu la chupa");
         }
-        
+        if(btn==this.buttonx){
+            this.lblPregunta.setTexto("Salimos");
+            this.motor.setViewVisibility(this.Window2.uid,false);
+        }
     }
 
 
