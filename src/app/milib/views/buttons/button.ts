@@ -13,7 +13,7 @@ export class Button extends View {
     private lblTexto:Label=null;
     private listener:ButtonListener;
     private imgBack:Imagen=null;
-    
+    private sFontColor:string='white';
     /**
      * Metodo de inicializacion de los elementos visuales en el Boton. Se ejecuta ak finalizar el constructor del padre (View)
      */
@@ -74,7 +74,10 @@ export class Button extends View {
         
         //console.log(this.xa+"========== "+this.ya);
     }
+    public setFontColor(vsFontColor:string):void{
+        this.sFontColor=vsFontColor;
 
+    }
     /**
      * Metodo para setear el texto del boton.
      * @param vtexto String: Texto del boton.
@@ -84,6 +87,12 @@ export class Button extends View {
     }
     public getlbl():Label{
         return this.lblTexto;
+    }
+     public setSize(vWith:number, vHeigh:number):void{
+        super.setSize(vWith,vHeigh);
+    }
+    public setPosition(vX:number, vY:number):void{
+        super.setSize(vX,vY);
     }
 
 

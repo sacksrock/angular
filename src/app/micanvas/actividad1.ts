@@ -15,6 +15,7 @@ export class Actividad1 implements EventsAdminListener,ButtonListener{
     private panelJuego:Panel;
     private imagenFondo:Imagen;
     private imagenWindow:Imagen;
+    private imagenPreguntas:Imagen;
     private imagenWin:Imagen;
     private Window:Window;
     private buttonExit:Button;
@@ -46,7 +47,7 @@ export class Actividad1 implements EventsAdminListener,ButtonListener{
         //creamos el array de las preguntas
         this.arrPreg=["¿Cuantas Champions tiene el Real Madrid?","¿Cuantas Ligas Tiene el Real Madrid?","¿Cuantas Copas del Rey Tiene el Real Madrid?"];
         //creamos las respuestas a las respuestas
-        this.arrResp=[["Ninguna","Doce","Diez","Siete"],["Mazo","ElDiablo","Diz","Treinta y Tres"],["Ninguna","Doce","Diez","Diecinueve"]];
+        this.arrResp=[["Ninguna","Doce","Diez","Siete"],["Cuarenta","Todas Son Correctas","Muchas","Treinta y Tres"],["Demasiadas","Setenta","Quince","Diecinueve"]];
         //creamos las respuestas a las respuestas correctas
         this.arrRespOk=["Doce","Treinta y Tres","Diecinueve"];
     }
@@ -58,25 +59,26 @@ export class Actividad1 implements EventsAdminListener,ButtonListener{
     //Hicimos todo en grupo juanma tuvilla eduardo daniel con ayuda de sergio tay y ramses
     private crearEscenarioMenu():void{
         //this.panelMenu=new Panel(this.motor,pmx,pmy,pmw,pmh);
-        this.Window=new Window(this.motor,this.pmx,this.pmy,this.pmw,this.pmh);
+        this.Window=new Window(this.motor,this.pmx*1.43,this.pmy,this.pmw*0.7,this.pmh*1);
         this.motor.addViewToParentView(this.imagenFondo,this.Window);
         //AÑADIMOSIMAGENALWINDOW
-        this.imagenWindow=new Imagen(this.motor,0,0,this.pmw,this.pmh);
+        this.imagenWindow=new Imagen(this.motor,0,0,this.pmw*0.7,this.pmh*1);
         this.imagenWindow.setImg('./assets/fondo.jpg');
         this.motor.addViewToParentView(this.Window,this.imagenWindow);
         
         //AÑADIMOS LAS PROPIEDADES DE LOS BOTONES TAMAÑO POSICION TEXTO Y SE LO AÑADIMOS A WINDOW
         //TAMAÑO Y POSICION BOTONES 
-        this.buttonExit= new Button(this.motor,340,300,200,100);
-        this.buttonContin= new Button(this.motor,340,180,200,100);
-        this.buttonNew= new Button(this.motor,340,60,200,100);
+        this.buttonExit= new Button(this.motor,this.pmx*-0.1,this.pmy*1.9,200,100);
+        this.buttonContin= new Button(this.motor,this.pmx*-0.1,this.pmy*1,200,100);
+        this.buttonNew= new Button(this.motor,this.pmx*-0.1,this.pmy*0.2,200,100);
         //AÑADIMOS TEXTO E IMAGEN A LOS BOTONES
         this.buttonExit.setTexto("SALIR");
-        this.buttonExit.setImagePath("./assets/red.png");
+        //this.buttonExit.setImagePath("./assets/red.png");
         this.buttonContin.setTexto("CONTINUAR");
-        this.buttonContin.setImagePath("./assets/blue.png");
+        //this.buttonContin.setImagePath("./assets/blue.png");
         this.buttonNew.setTexto("NUEVO JUEGO");
-        this.buttonNew.setImagePath("./assets/green.png");
+        //this.buttonNew.setImagePath("./assets/green.png");
+        
         //AÑADIMOS LOS BOTONES A WINDOW
         this.motor.addViewToParentView(this.Window,this.buttonExit);
         this.motor.addViewToParentView(this.Window,this.buttonContin);
@@ -98,6 +100,11 @@ export class Actividad1 implements EventsAdminListener,ButtonListener{
             //Creamos la nueva ventana
             this.Window2=new Window(this.motor,this.pmx,this.pmy,this.pmw,this.pmh);
             this.motor.addViewToParentView(this.imagenFondo, this.Window2);
+            
+            this.imagenPreguntas=new Imagen(this.motor,0,0,this.pmw*1,this.pmh*1);
+            this.imagenPreguntas.setImg('./assets/backmain.jpg');
+            this.motor.addViewToParentView(this.Window2,this.imagenPreguntas);
+            
             //Creamos la pregunta 1
             this.lblPregunta = new Label(this.motor,340,40,200,100);
             this.lblPregunta.setTexto(this.arrPreg[0]);
@@ -122,17 +129,17 @@ export class Actividad1 implements EventsAdminListener,ButtonListener{
             this.buttonResp4.setListener(this);
             this.motor.addViewToParentView(this.Window2,this.buttonResp4);
             //Creamos el boton salir
-            this.buttonx = new Button (this.motor,700,-30,200,100);
-            this.buttonx.setTexto("X");
-            this.motor.addViewToParentView(this.Window2,this.buttonx);
-            this.buttonx.setListener(this);
+        this.buttonx = new Button (this.motor, this.pmx*2.5,this.pmy*-0.1,200,100);
+        this.buttonx.setTexto("X");
+        this.motor.addViewToParentView(this.Window2,this.buttonx);
+        this.buttonx.setListener(this);
 
         }
         if(btn==this.buttonContin){
             this.motor.setViewVisibility(this.Window2.uid,true);
         }
         if(btn==this.buttonExit){
-            this.buttonExit.setTexto("edu la chupa");
+            this.motor.setViewVisibility(this.Window.uid,false);
         }
         if(btn==this.buttonx){
             this.motor.setViewVisibility(this.Window2.uid,false);
@@ -144,7 +151,9 @@ export class Actividad1 implements EventsAdminListener,ButtonListener{
             this.buttonResp2.setTexto(this.arrResp[1][1]);
             this.buttonResp3.setTexto(this.arrResp[1][2]);
             this.buttonResp4.setTexto(this.arrResp[1][3]);
-        }        
+            
+        }    
+            
         else if(btn.getlbl().getTexto()==this.arrRespOk[1]){
             this.lblPregunta.setTexto(this.arrPreg[2]);
             this.buttonResp1.setTexto(this.arrResp[2][0]);
@@ -153,14 +162,9 @@ export class Actividad1 implements EventsAdminListener,ButtonListener{
             this.buttonResp4.setTexto(this.arrResp[2][3]);
         }
         else if(btn.getlbl().getTexto()==this.arrRespOk[2]){
-            this.Window3 = new Window (this.motor,this.pmx,this.pmy,this.pmw,this.pmh);
-            this.motor.addViewToParentView(this.imagenFondo,this.Window3);
-            this.imagenWin=new Imagen(this.motor,0,0,this.pmw,this.pmh);
-            this.imagenWin.setImg('./assets/win.png');
-            this.motor.addViewToParentView(this.Window3,this.imagenWin);
-           
-            
-        }
+            this.imagenFondo.setImg('./assets/win.png');
+            this.motor.setViewVisibility(this.Window2.uid,false);
+            this.motor.setViewVisibility(this.Window.uid,false);}
     }
 
 
